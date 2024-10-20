@@ -12,7 +12,7 @@
 <div class="flex flex-col md:flex-row p-12 space-x-6 space-y-6">
     <div class="w-full md:w-3/12 sm:p-6 lg:p-8">
         @include('livewire.workorders.components.left-pane', [
-            'stepAt' => $stepAt
+            'steps' => $steps, 'stepAt' => \App\Models\Information::ROUTE_POS // $stepAt
         ])
     </div>
     <div class="w-full md:w-9/12">
@@ -34,7 +34,7 @@
                             <p class="mt-2 text-sm text-gray-700">Add a new {{ __('Information') }}.</p>
                         </div>
                         <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                            <a type="button" wire:navigate href="{{ route('information.index') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</a>
+                            {{--<a type="button" wire:navigate href="{{ route('information.index') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</a>--}}
                         </div>
                     </div>
 
@@ -43,7 +43,7 @@
                             <div class="max-w-xl py-2 align-middle">
                                 <form method="POST" wire:submit="addInformationThenNextToOrder" role="form" enctype="multipart/form-data">
                                     @csrf
-                                    @include('livewire.information.form')
+                                    @include('livewire.information.form', ['disabled' => $disabled])
                                 </form>
                             </div>
                         </div>

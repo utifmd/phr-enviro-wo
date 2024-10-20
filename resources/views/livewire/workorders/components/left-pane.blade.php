@@ -5,11 +5,11 @@
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
             </svg>
         </span>
-        <h3 class="font-medium leading-tight">Personal Info ({{$stepAt}})</h3>
+        <h3 class="font-medium leading-tight">Personal Info</h3>
         <p class="text-sm">Detail logged in information just done</p>
     </li>
     <li class="mb-10 ms-6">
-        @if($stepAt >= 1)
+        @if(in_array(1, $steps))
             <span class="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
                 <svg class="w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
@@ -22,11 +22,13 @@
                 </svg>
             </span>
         @endif
-        <h3 class="font-medium leading-tight">Information</h3>
+        <a class="{{in_array(1, $steps) ? '' : 'pointer-events-none'}}" href="{{ route('information.create')}}" wire:navigate.hover>
+            <h3 class="{{$stepAt == 1 ? 'text-green-600 font-bold' : 'font-medium'}} leading-tight">Information</h3>
+        </a>
         <p class="text-sm">Detail contractor information</p>
     </li>
     <li class="mb-10 ms-6">
-        @if($stepAt >= 2)
+        @if(in_array(2, $steps))
         <span class="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
             <svg class="w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
@@ -39,11 +41,13 @@
             </svg>
         </span>
         @endif
-        <h3 class="font-medium leading-tight">Order Detail</h3>
+        <a class="{{in_array(2, $steps) ? '' : 'pointer-events-none'}}" href="{{ route('orders.create')}}" wire:navigate.hover>
+            <h3 class="{{$stepAt == 2 ? 'text-green-600 font-bold' : 'font-medium'}} leading-tight">Order Detail</h3>
+        </a>
         <p class="text-sm">Step details workorder here</p>
     </li>
     <li class="ms-6">
-        @if($stepAt >= 3)
+        @if(in_array(3, $steps))
         <span class="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
             <svg class="w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
@@ -56,7 +60,9 @@
             </svg>
         </span>
         @endif
-        <h3 class="font-medium leading-tight">Trip Plan</h3>
+        <a class="{{in_array(3, $steps) ? '' : 'pointer-events-none'}}" href="{{ route('trip-plans.create')}}" wire:navigate.hover>
+            <h3 class="{{$stepAt == 3 ? 'text-green-600 font-bold' : 'font-medium'}} leading-tight">Trip Plan</h3>
+        </a>
         <p class="text-sm">Step details trip plan of workorder were here</p>
     </li>
 </ol>

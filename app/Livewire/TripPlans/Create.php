@@ -2,11 +2,10 @@
 
 namespace App\Livewire\TripPlans;
 
-use App\Livewire\Actions\GetStepAt;
+use App\Livewire\Actions\GetStep;
 use App\Livewire\Actions\RemoveUserCurrentPost;
-use App\Livewire\Actions\UpdateUserCurrentPost;
 use App\Livewire\Forms\TripPlanForm;
-use App\Models\Order;
+use App\Models\Post;
 use App\Models\TripPlan;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\View\View;
@@ -17,15 +16,32 @@ class Create extends Component
 {
     public TripPlanForm $form;
     private Authenticatable $user;
+    private GetStep $getStep;
+    private RemoveUserCurrentPost $removeUserCurrentPost;
 
     public function __construct()
     {
         $this->user = auth()->user();
+        $this->getStep = new GetStep($this->user);
+        $this->removeUserCurrentPost = new RemoveUserCurrentPost();
     }
 
-    public function mount(TripPlan $tripPlan)
+    public function mount(TripPlan $tripPlan): void
     {
-        $this->form->setTripPlanModel($tripPlan);
+        $currentPost = $this->user->currentPost ?? null;
+        if (!$currentPost) return;
+
+        $postId = $currentPost->post_id;
+        $build = TripPlan::query()
+            ->where('post_id', '=', $postId)
+            ->get();
+
+        $tripPlanModel = $build->isNotEmpty()
+            ? $build->first()
+            : $tripPlan;
+
+        $tripPlanModel->post_id = $postId;
+        $this->form->setTripPlanModel($tripPlanModel);
     }
 
     public function save()
@@ -37,24 +53,25 @@ class Create extends Component
 
     public function addTripPlanThenFinish(): void
     {
-        $removeUserCurrentPost = new RemoveUserCurrentPost();
-
         $this->form->store();
-        $removeUserCurrentPost($this->user->getAuthIdentifier());
+        $this->removeUserCurrentPost->execute(
+            $this->user->getAuthIdentifier()
+        );
         session()->flash(
             'message', 'Detail Orders successfully submitted, please follow the next step!'
         );
-        $this->redirectRoute('posts.index', navigate: true);
+        $this->redirectRoute(Post::ROUTE_NAME.'.index', navigate: true);
     }
 
     #[Layout('layouts.app')]
     public function render(): View
     {
-        $stepAt = new GetStepAt();
-        $stepAt = $stepAt(TripPlan::ROUTE_POS);
+        $steps = $this->getStep->getSteps();
+        $stepAt = $this->getStep->getStepAt();
+        $disabled = in_array(TripPlan::ROUTE_POS, $steps) && $stepAt != TripPlan::ROUTE_POS;
 
-        return view(
-            'livewire.trip-plan.create', compact('stepAt')
-        );
+        return view('livewire.trip-plan.create', compact(
+            'steps', 'stepAt', 'disabled'
+        ));
     }
 }

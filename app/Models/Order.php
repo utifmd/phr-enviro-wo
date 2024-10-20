@@ -40,7 +40,7 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'unit', 'description', 'req_qty', 'rem_qty', 'sch_qty', 'uom', 'required_date', 'pick_up_from', 'destination', 'wr_number', 'rig_name', 'pic', 'change', 'post_id'
+        'status', 'description', 'req_qty', 'rem_qty', 'sch_qty', 'uom', 'required_date', 'pick_up_from', 'destination', 'wr_number', 'rig_name', 'pic', 'change', 'post_id', 'yard', 'trip'
     ];
     function post(): BelongsTo
     {

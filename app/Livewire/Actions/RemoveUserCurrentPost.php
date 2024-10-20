@@ -6,7 +6,7 @@ use App\Models\UserCurrentPost;
 
 class RemoveUserCurrentPost
 {
-    public function __invoke(string $userId): void
+    public function execute(string $userId): void
     {
         $model = UserCurrentPost::query()->where(
             'user_id', '=', $userId

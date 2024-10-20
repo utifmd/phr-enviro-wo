@@ -7,8 +7,7 @@
 <div class="flex flex-col md:flex-row p-12 space-x-6 space-y-6">
     <div class="w-full md:w-3/12 sm:p-6 lg:p-8">
         @include('livewire.workorders.components.left-pane', [
-            'areRouteExist' => $areRouteExist,
-            'currentRoute' => $currentRoute
+            'steps' => $steps, 'stepAt' => \App\Models\TripPlan::ROUTE_POS
         ])
     </div>
     <div class="w-full md:w-9/12">
@@ -30,7 +29,7 @@
                             <p class="mt-2 text-sm text-gray-700">Add a new {{ __('Trip Plan') }}.</p>
                         </div>
                         <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                            <a type="button" wire:navigate href="{{ route('trip-plans.index') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</a>
+                            {{--<a type="button" wire:navigate href="{{ route('trip-plans.index') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</a>--}}
                         </div>
                     </div>
 
@@ -39,7 +38,7 @@
                             <div class="max-w-xl py-2 align-middle">
                                 <form method="POST" wire:submit="addTripPlanThenFinish" role="form" enctype="multipart/form-data">
                                     @csrf
-                                    @include('livewire.trip-plan.form')
+                                    @include('livewire.trip-plan.form', ['disabled' => $disabled])
                                 </form>
                             </div>
                         </div>

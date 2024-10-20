@@ -25,8 +25,8 @@
                                 <dl class="divide-y divide-gray-100">
                                     
                                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                        <dt class="text-sm font-medium leading-6 text-gray-900">Unit</dt>
-                                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $order->unit }}</dd>
+                                        <dt class="text-sm font-medium leading-6 text-gray-900">Status</dt>
+                                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $order->status }}</dd>
                                     </div>
                                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                         <dt class="text-sm font-medium leading-6 text-gray-900">Description</dt>
@@ -79,6 +79,14 @@
                                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                         <dt class="text-sm font-medium leading-6 text-gray-900">Post Id</dt>
                                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $order->post_id }}</dd>
+                                    </div>
+                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                        <dt class="text-sm font-medium leading-6 text-gray-900">Yard</dt>
+                                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $order->yard }}</dd>
+                                    </div>
+                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                        <dt class="text-sm font-medium leading-6 text-gray-900">Trip</dt>
+                                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $order->trip }}</dd>
                                     </div>
 
                                 </dl>

@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Posts;
 
-use App\Livewire\Actions\GetStepAt;
+use App\Livewire\Actions\GetStep;
 use App\Livewire\Forms\PostForm;
 use App\Models\Post;
 use Illuminate\View\View;
@@ -28,7 +28,7 @@ class Create extends Component
     #[Layout('layouts.app')]
     public function render(): View
     {
-        $stepAt = new GetStepAt();
+        $stepAt = new GetStep();
         $stepAt = $stepAt(Post::ROUTE_POS);
 
         return view(

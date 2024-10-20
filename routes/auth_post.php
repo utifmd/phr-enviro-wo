@@ -4,6 +4,7 @@ use App\Livewire\Information\Create;
 use App\Livewire\Information\Edit;
 use App\Livewire\Information\Index;
 use App\Livewire\Information\Show;
+use App\Livewire\TripPlans\Confirm;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -11,14 +12,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts', \App\Livewire\Posts\Index::class)
         ->name('posts.index');
 
-    Route::get('/posts/create', \App\Livewire\Posts\Create::class)
-        ->name('posts.create');
+    /*Route::get('/posts/create', \App\Livewire\Posts\Create::class)
+        ->name('posts.create');*/
 
     Route::get('/posts/show/{post}', \App\Livewire\Posts\Show::class)
         ->name('posts.show');
 
-    Route::get('/posts/update/{post}', \App\Livewire\Posts\Edit::class)
-        ->name('posts.edit');
+    /*Route::get('/posts/update/{post}', \App\Livewire\Posts\Edit::class)
+        ->name('posts.edit');*/
 
 
     Route::get('/orders', \App\Livewire\Orders\Index::class)
@@ -36,6 +37,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/trip-plans', \App\Livewire\TripPlans\Index::class)
         ->name('trip-plans.index');
+
+    Route::get('/trip-plans/confirm', Confirm::class)
+        ->name('trip-plans.confirm');
 
     Route::get('/trip-plans/create', \App\Livewire\TripPlans\Create::class)
         ->name('trip-plans.create');

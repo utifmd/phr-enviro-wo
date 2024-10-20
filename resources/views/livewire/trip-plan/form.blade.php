@@ -1,5 +1,5 @@
 <div class="space-y-6">
-    
+
     <div>
         <x-input-label for="start_from" :value="__('Start From')"/>
         <x-text-input wire:model="form.start_from" id="start_from" name="start_from" type="text" class="mt-1 block w-full" autocomplete="start_from" placeholder="Start From"/>
@@ -98,15 +98,15 @@
             <x-input-error class="mt-2" :messages="$message"/>
         @enderror
     </div>
-    <div>
+    {{--<div>
         <x-input-label for="post_id" :value="__('Post Id')"/>
         <x-text-input wire:model="form.post_id" id="post_id" name="post_id" type="text" class="mt-1 block w-full" autocomplete="post_id" placeholder="Post Id"/>
+    </div>--}}
+
+    <div class="flex items-center gap-4">
         @error('form.post_id')
             <x-input-error class="mt-2" :messages="$message"/>
         @enderror
-    </div>
-
-    <div class="flex items-center gap-4">
-        <x-primary-button>Submit</x-primary-button>
+        <x-primary-button disabled="{{$disabled}}">Submit</x-primary-button>
     </div>
 </div>

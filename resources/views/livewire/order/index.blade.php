@@ -26,7 +26,7 @@
                                 <tr>
                                     <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">No</th>
                                     
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Unit</th>
+									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Status</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Description</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Req Qty</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Rem Qty</th>
@@ -40,6 +40,8 @@
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Pic</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Change</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Post Id</th>
+									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Yard</th>
+									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Trip</th>
 
                                     <th scope="col" class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500"></th>
                                 </tr>
@@ -49,7 +51,7 @@
                                     <tr class="even:bg-gray-50" wire:key="{{ $order->id }}">
                                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900">{{ ++$i }}</td>
                                         
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $order->unit }}</td>
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $order->status }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $order->description }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $order->req_qty }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $order->rem_qty }}</td>
@@ -63,6 +65,8 @@
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $order->pic }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $order->change }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $order->post_id }}</td>
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $order->yard }}</td>
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $order->trip }}</td>
 
                                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                             <a wire:navigate href="{{ route('orders.show', $order->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Show') }}</a>

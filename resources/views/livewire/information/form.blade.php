@@ -36,7 +36,7 @@
     </div>
     <div>
         <x-input-label for="end_plan" :value="__('End Plan')"/>
-        <x-text-input id="end_plan" name="end_plan" type="datetime-local" class="mt-1 block w-full" autocomplete="end_plan" placeholder="End Plan" wire:model="form.end_plan"  min="{{date('Y-m-d')}}T{{date('hh:mm:ss')}}"/>
+        <x-text-input id="end_plan" name="end_plan" type="datetime-local" class="mt-1 block w-full" autocomplete="end_plan" placeholder="End Plan" wire:model="form.end_plan" min="{{date('Y-m-d')}}T{{date('hh:mm:ss')}}"/>
         @error('form.end_plan')
             <x-input-error class="mt-2" :messages="$message"/>
         @enderror
@@ -55,16 +55,16 @@
             <x-input-error class="mt-2" :messages="$message"/>
         @enderror
     </div>
-    <div>
+    {{--<div>
         <x-input-label for="post_id" :value="__('Post Id')"/>
         <x-text-input wire:model="form.post_id" id="post_id" name="post_id" type="text" class="mt-1 block w-full" autocomplete="post_id" placeholder="Post Id"/>
+    </div>--}}
+
+    <div class="flex items-center gap-4">
         @error('form.post_id')
             <x-input-error class="mt-2" :messages="$message"/>
         @enderror
-    </div>
-
-    <div class="flex items-center gap-4">
-        <x-primary-button wire:click="form.setVehicleType">Vehicle Type</x-primary-button>
+        <x-primary-button disabled="{{$disabled}}" wire:click="form.setVehicleType">Submit</x-primary-button>
     </div>
     {{--<div class="flex items-center gap-4">
         <x-primary-button>Submit</x-primary-button>
